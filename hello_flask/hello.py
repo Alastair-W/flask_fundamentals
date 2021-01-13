@@ -13,14 +13,16 @@ def hello_dojo():
 def success():
     return "success"
 
-@app.route('/hello/<name>')
+@app.route('/say/<name>')
 def hello(name):
-    print(name)
-    return f"Hello {name.capitalize()}"
+    if type(name) == str:
+        print(name)
+        return f"Hi {name.capitalize()}"
 
-@app.route('/repeat/<int:num>/<string>')
+@app.route('/repeat/<num>/<string>')
 def repeat(num, string):
-    return string*num
+    if type(string) == str and num.isdigit():
+        return string * int(num)
         
 @app.route('/users/<username>/<id>')
 def show_user_profile(username, id):
